@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import os
 import asyncio
+from stay_online import stay_online
 
 client = discord.Client()
 client = commands.Bot(status=discord.Status.dnd, command_prefix= "=", intents = discord.Intents.all())
@@ -27,3 +28,6 @@ async def status_task():
 
         await client.change_presence(status=discord.Status.dnd, activity = discord.Activity(type=discord.ActivityType.watching, name = "Online Convocation | =help"))
         await asyncio.sleep(20)
+
+stay_online()
+client.run(os.getenv('TOKEN'))
