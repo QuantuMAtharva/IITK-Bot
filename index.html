@@ -1,0 +1,58 @@
+<html>
+<head>
+    <a href="" class="myButton">Invite</a>
+    <style>
+    .myButton {
+        background-color:#5865f2;
+        -webkit-border-radius:33px;
+        -moz-border-radius:33px;
+        border-radius:33px;
+        display:inline-block;
+        cursor:pointer;
+        color:#ffffff;
+        font-family:Impact;
+        font-size:25px;
+        font-weight:bold;
+        padding:16px 31px;
+        text-decoration:none;
+        text-shadow:0px 1px 0px #5865f2;
+    }
+    .myButton:hover {
+        background-color:#5865f2;
+    }
+    .myButton:active {
+        position:relative;
+        top:1px;
+    }
+    </style>
+</head>
+    <div class="fullscreen-bg">
+        <video oncontextmenu="return false;" autoplay muted loop id="myVideo">
+            <source src="stars.mp4" type="video/mp4">
+                <style>
+                video#myVideo { 
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                min-width: 100%;
+                min-height: 100%;
+                width: auto;
+                height: auto;
+                z-index: -100;
+                -ms-transform: translateX(-50%) translateY(-50%);
+                -moz-transform: translateX(-50%) translateY(-50%);
+                -webkit-transform: translateX(-50%) translateY(-50%);
+                transform: translateX(-50%) translateY(-50%);
+                background: no-repeat;
+                background-size: cover;
+                }
+                /* video {position: fixed;
+                right: 0;
+                bottom: 0;
+                min-width: 100%;
+                min-height: 100%;
+                z-index: -10;} */
+                </style>
+          </video>   
+    </div>
+</html>
