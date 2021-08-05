@@ -54,9 +54,9 @@ async def iitk(ctx):
     await ctx.send(embed=iitk_links)
 
 @client.command()
-async def invite(ctx, user: discord.Member):
-    invite_link = discord.Embed(title="Hi! I hope `Chill Hai` :slight_smile:.\nWant to invite me to your server?", color=0x00ff00, description="[Click Here](https://discord.com/api/oauth2/authorize?client_id=864761267687653416&permissions=8&scope=bot) to Invite me!")
-    await user.send(embed=invite_link)
+async def invite(ctx):
+    invite_link = discord.Embed(title="Hi! I hope ||Chill Hai|| :slight_smile:.\nWant to invite me to your server?", color=0x00ff00, description="[Click Here](https://discord.com/api/oauth2/authorize?client_id=864761267687653416&permissions=8&scope=bot) to Invite me!")
+    await ctx.author.send(embed=invite_link)
 
 @client.command()
 async def clear(ctx, num=2):
