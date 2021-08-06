@@ -5,106 +5,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
         <!-- Include Font Awesome Stylesheet in Header -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="icon" type="image/png" href="resources/favicon.png">
-
+        <link rel="stylesheet" href="style.css">
 
         <title>The IITK Bot</title>
-        <style>
-            html {
-                scroll-behavior: smooth;
-            }
-            @media screen and (prefers-reduced-motion: reduce) {
-                html {
-                    scroll-behavior: auto;
-                }
-            /* @media only screen and (max-width: 768px) {
-                body {
-                    font-size: 20px;
-                }
-            }
-            @media only screen and (max-width: 320px) {
-                b {
-                font-size: 10px;
-                }
-            } */
-            }
-            h1, h2, h3, h4, h5, h6 {
-                scroll-margin-top: 1em;
-                scroll-margin-bottom: 1em;
-            }
-            class {
-                align-items: center;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                width: 100%;
-                height: 100%;
-            }
-            .txt:hover {
-            text-decoration: underline;
-            }
-        </style>
-        <style type="text/css">
-        body{margin:40px auto;
-            max-width:1200px;
-            line-height:1.6;
-            font-size:18px;
-            font-family: 'Roboto';
-            /* color:#444; */
-            scroll-margin-top: 1em;
-            color: #fff;
-            padding:0 
-            10px}
-        p{margin:40px auto;
-        max-width:1200px;
-        line-height:1.6;
-        font-size:18px;
-        font-family: 'Roboto';
-        /* color:#444; */
-        scroll-margin-top: 1em;
-        color: #fff;
-        padding:0 
-        10px}
-            h1,h2,h3{line-height:1.2}
-
-            img {  
-            -drag: none;
-            user-select: none;
-            -moz-user-select: none;
-            -webkit-user-drag: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-            }
-        </style>
     </head>
+    <!-- <div class="spinner">
+        <div class="cube1"></div>
+        <div class="cube2"></div>
+    </div> -->
     <div class="fullscreen-bg">
         <video oncontextmenu="return false;" poster="resources/cover_image.png" autoplay muted loop id="myVideo">
             <source src="resources/star_bg.mp4" type="video/mp4">
-                <style>
-                video#myVideo { 
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                min-width: 100%;
-                min-height: 100%;
-                width: auto;
-                height: auto;
-                z-index: -100;
-                -ms-transform: translateX(-50%) translateY(-50%);
-                -moz-transform: translateX(-50%) translateY(-50%);
-                -webkit-transform: translateX(-50%) translateY(-50%);
-                transform: translateX(-50%) translateY(-50%);
-                background: no-repeat;
-                background-size: cover;
-                }
-                /* video {position: fixed;
-                right: 0;
-                bottom: 0;
-                min-width: 100%;
-                min-height: 100%;
-                z-index: -10;} */
-                </style>
           </video>   
     </div>
     <body>
@@ -124,101 +37,6 @@
             <br><br>
         </header>
 
-        <style>
-            .inviteButton {
-                background-color:#5865f2;
-                -webkit-border-radius:33px;
-                -moz-border-radius:33px;
-                border-radius:33px;
-                display:inline-block;
-                cursor:pointer;
-                color:#ffffff;
-                font-family: 'Roboto';
-                font-size:25px;
-                font-weight:bold;
-                padding:16px 31px;
-                text-decoration:none;
-                text-shadow:0px 1px 0px #5865f2;
-                align-content: center;
-                text-align: center;
-            }
-            .inviteButton:hover {
-                background-color:#5865f2;
-            }
-            .inviteButton:active {
-                position:relative;
-                top:1px;
-            }
-
-            /* .commandsButton {
-                background-color:#5865f2;
-                -webkit-border-radius:33px;
-                -moz-border-radius:33px;
-                border-radius:33px;
-                display:inline-block;
-                cursor:pointer;
-                color:#ffffff;
-                font-family: 'Roboto';
-                font-size:25px;
-                font-weight:bold;
-                padding:16px 31px;
-                text-decoration:none;
-                text-shadow:0px 1px 0px #5865f2;
-            }
-            .commandsButton:hover {
-                background-color:#5865f2;
-            }
-            .commandsButton:active {
-                position:relative;
-                top:1px;
-            }
-
-            .contactButton {
-                background-color:#5865f2;
-                -webkit-border-radius:33px;
-                -moz-border-radius:33px;
-                border-radius:33px;
-                display:inline-block;
-                cursor:pointer;
-                color:#ffffff;
-                font-family: 'Roboto';
-                font-size:25px;
-                font-weight:bold;
-                padding:16px 31px;
-                text-decoration:none;
-                text-shadow:0px 1px 0px #5865f2;
-            }
-            .contactButton:hover {
-                background-color:#5865f2;
-            }
-            .contactButton:active {
-                position:relative;
-                top:1px;
-            }
-
-            .contriButton {
-                background-color:#5865f2;
-                -webkit-border-radius:33px;
-                -moz-border-radius:33px;
-                border-radius:33px;
-                display:inline-block;
-                cursor:pointer;
-                color:#ffffff;
-                font-family: 'Roboto';
-                font-size:25px;
-                font-weight:bold;
-                padding:16px 31px;
-                text-decoration:none;
-                text-shadow:0px 1px 0px #5865f2;
-            }
-            .contriButton:hover {
-                background-color:#5865f2;
-            }
-            .contriButton:active {
-                position:relative;
-                top:1px;
-            } */
-        </style>
         <p style="text-align:center">
         <a style="text-align:center; color: rgb(218, 154, 37); text-decoration: none;font-size: 21px;" href="#commands" class="commandsButton"><u>Commands</u></a>
         &nbsp;&nbsp;&nbsp;&nbsp;
@@ -269,7 +87,14 @@
 
     <p style="text-align:center">
         Crafted with ❤️ by <a href="https://github.com/QuantuMAtharva" target="_blank" style="color:white;text-decoration: none"><u>QauntumAtharva</u></a>
-    
+    </p>
+    <div style="text-align:center;">
+        <a href="https://discord.gg/gYVsrzCGgU" target="_blank" style="text-decoration: none; color: white;font-size: 3em;" class="fab fa-discord"></a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="https://bit.ly/37ms0aH" target="_blank" style="text-decoration: none; color: white;font-size: 3em;" class="fab fa-youtube"></a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="https://github.com/QuantuMAtharva/IITK-Bot" target="_blank" style="text-decoration: none; color: white;font-size: 3em;" class="fab fa-github"></a>
+    </div>
     
     <!-- <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-46163202-2','auto');ga('send','pageview');</script>  -->
 
