@@ -38,7 +38,7 @@ async def help(ctx):
     help.set_thumbnail(url="https://cdn.discordapp.com/attachments/864451366327549963/865132277620539402/iitk_logo.jpg")
     help.add_field(inline=False, name="Utility Commands", value="1. `iitk` : Gives important official websites related to IITK\n2. `snt` : Gives Server links for all SnT Clubs, with few other details\n3. `mnc` : Gives links related to MnC Clubs\n4. `acads` : Gives important links related to Academic things, like Grade Calculator Website, Course Resorces Links etc.")
     help.add_field(inline=False, name="Enabling IITK Email Verfication for the server", value="Coming soon...")
-    help.add_field(inline=False, name="Extra Commands", value="1. `=clear <number>` : To clear a certain number of messages in a channel\n2. `=invite` : Get invite link for the Bot in your DM")
+    help.add_field(inline=False, name="Extra Commands", value="1. `=clear <number>` : To clear a certain number of messages in a channel **[NOTE: Requires user to have Manage Messages Permission]**\n2. `=invite` : Get invite link for the Bot in your DM")
     await ctx.send(embed = help)
 
 # Subcommands under the main help command
@@ -61,7 +61,7 @@ async def acads(ctx):
 
 @help.command()
 async def clear(ctx, number):
-    clear= discord.Embed(title="`=clear <number>` Command", color=0x00ff00, description="Clears a certain number of messages in a channel.\nUsage: `clear 2` clears 2 latest messages")
+    clear= discord.Embed(title="`=clear <number>` Command", color=0x00ff00, description="Clears a certain number of messages in a channel.\nUsage: `clear 2` clears 2 latest messages\n**[NOTE: Requires user to have Manage Messages Permission]**")
 
 # Other Custom Commands
 @client.command()
@@ -75,6 +75,7 @@ async def invite(ctx):
     await ctx.author.send(embed=invite_link)
 
 @client.command()
+@commands.has_permissions(manage_messages=True)
 async def clear(ctx, num=2):
   await ctx.channel.purge(limit = num+1)
 
