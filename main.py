@@ -47,6 +47,22 @@ async def iitk(ctx):
     iitk = discord.Embed(title="`=iitk` Command", color=0x00ff00, description="Gives out links for IITK website, DoAA, DoSA, IITK Alumni Association, SIIC and much more...")
     await ctx.send(embed=iitk)
 
+@help.command()
+async def snt(ctx):
+    snt = discord.Embed(title="`=snt` Command", color=0x00ff00, description="Gives out links for all SnT Club servers, websites etc along with much more details")
+
+@help.command()
+async def mnc(ctx):
+    mnc = discord.Embed(title="`=mnc` Command", color=0x00ff00, description="Gives out links for MnC Club servers, handles etc along with much more details")
+
+@help.command()
+async def acads(ctx):
+    acads = discord.Embed(title="`=acads` Command", color=0x00ff00, description="Gives out important links related to Academic things, like Grade Calculator Website, Course Resorces Links, Previous Batches Course Grades Stats etc.")
+
+@help.command()
+async def clear(ctx, number):
+    clear= discord.Embed(title="`=clear <number>` Command", color=0x00ff00, description="Clears a certain number of messages in a channel.\nUsage: `clear 2` clears 2 latest messages")
+
 # Other Custom Commands
 @client.command()
 async def iitk(ctx):
