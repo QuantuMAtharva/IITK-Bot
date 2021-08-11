@@ -59,18 +59,22 @@ async def iitk(ctx):
 @help.command()
 async def snt(ctx):
     snt = discord.Embed(title="`=snt` Command", color=0x00ff00, description="Gives out links for all SnT Club servers, websites etc along with much more details")
+    await ctx.send(embed=snt)
 
 @help.command()
 async def mnc(ctx):
     mnc = discord.Embed(title="`=mnc` Command", color=0x00ff00, description="Gives out links for MnC Club servers, handles etc along with much more details")
+    await ctx.send(embed=mnc)
 
 @help.command()
 async def acads(ctx):
     acads = discord.Embed(title="`=acads` Command", color=0x00ff00, description="Gives out important links related to Academic things, like Grade Calculator Website, Course Resorces Links, Previous Batches Course Grades Stats etc.")
+    await ctx.send(embed=acads)
 
 @help.command()
-async def clear(ctx, number):
-    clear= discord.Embed(title="`=clear <number>` Command", color=0x00ff00, description="Clears a certain number of messages in a channel.\nUsage: `clear 2` clears 2 latest messages\n**[NOTE: Requires user to have Manage Messages Permission]**")
+async def clear(ctx):
+    clear= discord.Embed(title="`=clear <number>` Command", color=0x00ff00, description="Clears a certain number of messages in a channel.\nUsage: `=clear 2` clears 2 latest messages\n**[NOTE: Requires user to have Manage Messages Permission]**")
+    await ctx.send(embed=clear)
 
 # Other Custom Commands
 @client.command()
@@ -81,14 +85,17 @@ async def iitk(ctx):
 @client.command()
 async def snt(ctx):
     snt_links=discord.Embed(title="Links related to SnT", color=0x00ff00, description="1. [SnT Website](https://www.sntiitk.in)\n2. [SnT Discord Server](https://discord.gg/ChYB82A49Y)")
+    await ctx.send(embed=snt_links)
 
 @client.command()
 async def mnc(ctx):
     mnc_links=discord.Embed(title="Links related to MnC", color=0x00ff00, description="1. [MnC Website](https://students.iitk.ac.in/mnc/)")
+    await ctx.send(embed=mnc_links)
 
 @client.command()
 async def acads(ctx):
-    acads_links=discord.Embed(title="Links related to Academic", color=0x00ff00, description="1. [CPI/SPI Calculator](https://cpi-spi-calculator.herokuapp.com/)\n2. [Course Resorces Links (**More coming soon**)](https://examvault.github.io)\n3. [Faculty Wise Past Grades](https://incog-nahito.github.io/grades/faculty/)\n[Course Wise Past Grades](https://grades-card.github.io/)")
+    acads_links=discord.Embed(title="Links related to Academics", color=0x00ff00, description="1. [CPI/SPI Calculator](https://cpi-spi-calculator.herokuapp.com/)\n2. [Course Resorces Links](https://examvault.github.io) **(More coming soon)**\n3. [Faculty Wise Past Grades](https://incog-nahito.github.io/grades/faculty/) **|** [Course Wise Past Grades](https://grades-card.github.io/)")
+    await ctx.send(embed=acads_links)
 
 @client.command()
 async def invite(ctx):
@@ -98,7 +105,7 @@ async def invite(ctx):
 @client.command()
 @commands.has_permissions(manage_messages=True)
 async def clear(ctx, num=2):
-  await ctx.channel.purge(limit = num+1)
+    await ctx.channel.purge(limit = num+1)
 
 # Command to enable email verification in a server
 
