@@ -4,6 +4,15 @@ import os
 import asyncio
 from stay_online import stay_online
 
+# Imports added for adding Email Verification
+import sqlite3
+import re
+import random
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+import requests
+
+
 client = discord.Client()
 client = commands.Bot(status=discord.Status.dnd, command_prefix= "=", intents = discord.Intents.all())
 
@@ -91,6 +100,27 @@ async def invite(ctx):
 async def clear(ctx, num=2):
   await ctx.channel.purge(limit = num+1)
 
+# Command to enable email verification in a server
+
+conn = sqlite3.connect('iitk_bot.db')
+c = conn.cursor()
+c.execute("""CREATE TABLE IF NOT EXISTS 
+users(
+    userid INT,
+    guildid INT, 
+    email TEXT,
+    code INT, 
+    verified INTEGER);""")
+c.execute("""CREATE TABLE IF NOT EXISTS
+guilds(
+    guildid INT PRIMARY KEY,
+    domains TEXT,
+    onjoin INT,
+    role TEXT);""")
+conn.commit()
+
+
+    
 
 
 
