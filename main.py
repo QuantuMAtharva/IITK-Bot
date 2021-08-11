@@ -2,6 +2,8 @@ import discord
 from discord.ext import commands
 import os
 import asyncio
+
+from discord.flags import Intents
 from stay_online import stay_online
 
 # Imports added for adding Email Verification
@@ -68,7 +70,7 @@ async def mnc(ctx):
 
 @help.command()
 async def acads(ctx):
-    acads = discord.Embed(title="`=acads` Command", color=0x00ff00, description="Gives out important links related to Academic things, like Grade Calculator Website, Course Resorces Links, Previous Batches Course Grades Stats etc.")
+    acads = discord.Embed(title="`=acads` Command", color=0x00ff00, description="Gives out important links related to Academic things, like Grade Calculator Website, Course Resources Links, Previous Batches Course Grades Stats etc.")
     await ctx.send(embed=acads)
 
 @help.command()
@@ -125,6 +127,26 @@ guilds(
     onjoin INT,
     role TEXT);""")
 conn.commit()
+
+# Fetch basic parameters
+def get_guild(guildid):
+    return c.execute("SELECT * FROM guilds WHERE guildid=?", (guildid,)).fetchone()
+
+def new_guild(guildid, domains="", onjoin=0, role="Verified"):
+    c.execute("INSERT INTO guilds VALUES (?, ?, ?, ?)", (guildid, domains, onjoin, role))
+    conn.commit()
+
+def get_user_guild(guildid, userid):
+    return c.execute("SELECT * FROM users WHERE guildid=? AND userid=?", (guildid, userid)).fetchone()
+
+def get_users_guilds(userid):
+    return c.execute("SELECT * FROM users WHERE userid=?", (userid,)).fetchall()
+
+def get_emails_guilds(guildid, email):
+    return c.execute("SELECT * FROM users WHERE guildid=? AND email=? AND verified=1", (guildid, email)).fetchall()
+
+def get_users_codes(userid, code):
+    return c.execute("SELECT * FROM users WHERE userid=? AND code=?", (userid, code)).fetchall()
 
 
     
