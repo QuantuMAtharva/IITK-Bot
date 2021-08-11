@@ -70,6 +70,18 @@ async def iitk(ctx):
     await ctx.send(embed=iitk_links)
 
 @client.command()
+async def snt(ctx):
+    snt_links=discord.Embed(title="Links related to SnT", color=0x00ff00, description="1. [SnT Website](https://www.sntiitk.in)\n2. [SnT Discord Server](https://discord.gg/ChYB82A49Y)")
+
+@client.command()
+async def mnc(ctx):
+    mnc_links=discord.Embed(title="Links related to MnC", color=0x00ff00, description="1. [MnC Website](https://students.iitk.ac.in/mnc/)")
+
+@client.command()
+async def acads(ctx):
+    acads_links=discord.Embed(title="Links related to Academic", color=0x00ff00, description="1. [CPI/SPI Calculator](https://cpi-spi-calculator.herokuapp.com/)\n2. [Course Resorces Links (**More coming soon**)](https://examvault.github.io)\n3. [Faculty Wise Past Grades](https://incog-nahito.github.io/grades/faculty/)\n[Course Wise Past Grades](https://grades-card.github.io/)")
+
+@client.command()
 async def invite(ctx):
     invite_link = discord.Embed(title="Hi! I hope ||Chill Hai|| :slight_smile:.\nWant to invite me to your server?", color=0x00ff00, description="[Click Here](https://discord.com/api/oauth2/authorize?client_id=864761267687653416&permissions=8&scope=bot) to Invite me!")
     await ctx.author.send(embed=invite_link)
