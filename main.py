@@ -2,7 +2,6 @@ import discord
 from discord.ext import commands
 import os
 import asyncio
-
 from discord.flags import Intents
 from stay_online import stay_online
 
@@ -10,9 +9,10 @@ from stay_online import stay_online
 import sqlite3
 import re
 import random
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
+import yagmail
 import requests
+
+yag = yagmail.SMTP(os.getenv('EMAIL'), os.getenv('PASSWORD'))
 
 
 client = discord.Client()
@@ -48,7 +48,7 @@ async def help(ctx):
     help.set_footer(text="Powered by mooKIT", icon_url="https://cdn.discordapp.com/attachments/864451366327549963/865132951251451914/2Q.png")
     help.set_thumbnail(url="https://cdn.discordapp.com/attachments/864451366327549963/865132277620539402/iitk_logo.jpg")
     help.add_field(inline=False, name="Utility Commands", value="1. `iitk` : Gives important official websites related to IITK\n2. `snt` : Gives Server links for all SnT Clubs, with few other details\n3. `mnc` : Gives links related to MnC Clubs\n4. `acads` : Gives important links related to Academic things, like Grade Calculator Website, Course Resorces Links etc.")
-    help.add_field(inline=False, name="Enabling IITK Email Verfication for the server", value="Coming soon...")
+    help.add_field(inline=False, name="Enabling IITK Email Verfication for the server", value="Use `=vstatus` to get started")
     help.add_field(inline=False, name="Extra Commands", value="1. `=clear <number>` : To clear a certain number of messages in a channel **[NOTE: Requires user to have Manage Messages Permission]**\n2. `=invite` : Get invite link for the Bot in your DM")
     await ctx.send(embed = help)
 
@@ -209,14 +209,6 @@ def email_check(email):
     else:
         return False
 
-def mailgun_send(email_address, verification_code):
-	return requests.post(
-		"https://api.mailgun.net/v3/{}/messages".format(os.environ.get('MAILGUN_DOMAIN')),
-		auth=("api", os.environ.get('MAILGUN_API_KEY')),
-		data={"from": "EmailBot <mailgun@{}>".format(os.environ.get('MAILGUN_DOMAIN')),
-			"to": email_address,
-			"subject": "[IITK Bot] Verify your server email",
-			"text": str(verification_code)})
 
 # Now commands and actions based on user joining the server/present in the server
 
@@ -269,28 +261,47 @@ async def on_message(message):
                 for i in verif_list:
                     insert_code(random_code, message.author.id, i)
                     insert_email(message_content, message.author.id, i)
-                emailmessage = Mail(
-                    from_email=os.environ.get('SENDGRID_EMAIL'),
-                    to_emails=message_content,
-                    subject='[IITK Bot] Verify your server email',
-                    html_content=str(random_code))
+                
+                receiver = message_content
+                body = str(random_code)
+
                 try:
-                    sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
-                    response = sg.send(emailmessage)
-                    print(response.status_code)
-                    print(response.body)
-                    print(response.headers)
-                    await message.channel.send("Email sent. **Reply here with your verification code**. If you haven't received it, check your spam folder.")
+                  yag.send(
+                    to=receiver,
+                    subject="[IITK Bot] Verify your server email",
+                    contents='<h1 style="text-align:center;">DM the Code below to the bot to verify yourself</h1>\n' + '<h3 style="text-align:center;">'+body+'</h3>',
+                )
+                  await message.channel.send("Email sent. **Reply here with your verification code**. If you haven't received it, check your spam folder.\nIf you still are not able to get the Verification Code, simply message the Email ID once again to retry")
+
                 except Exception as e:
-                    mailgun_email = mailgun_send(message_content, random_code)
-                    if mailgun_email.status_code == 200:
-                        await message.channel.send("Email sent. **Reply here with your verification code**. If you haven't received it, check your spam folder.")
-                    else:
-                        await message.channel.send("Email failed to send.")
-            else:
-                await message.channel.send("Invalid email.")
+                  print(e)
+                  await message.channel.send("Email failed to send")
+
+                # Cancel the SendGrid approach
+                
+                # emailmessage = Mail(
+                #     from_email=os.getenv('SENDGRID_EMAIL'),
+                #     to_emails=message_content,
+                #     subject='[IITK Bot] Verify your server email',
+                #     html_content=str(random_code))
+                # try:
+                #     sg = SendGridAPIClient(os.getenv('SENDGRID_API_KEY'))
+                #     response = sg.send(emailmessage)
+                #     print(response.status_code)
+                #     print(response.body)
+                #     print(response.headers)
+                #     await message.channel.send("Email sent. **Reply here with your verification code**. If you haven't received it, check your spam folder.")
+                # except Exception as e:
+                #     print(e)
+                    # mailgun_email = mailgun_send(message_content, random_code)
+                    # if mailgun_email.status_code == 200:
+                    #     await message.channel.send("Email sent. **Reply here with your verification code**. If you haven't received it, check your spam folder.")
+                # else:
+                #     await message.channel.send("Email failed to send.")
+
+
         else:
-            await message.channel.send("You have not joined a server.")
+            await message.channel.send("You have not joined a server")
     elif (len(message_content) == 6) and message_content.isdigit():
         verif_code = int(message_content)
         prev_codes_f = get_users_codes(message.author.id, verif_code)
@@ -317,11 +328,11 @@ async def on_message(message):
                     role = discord.utils.get(curr_guild.roles, name=guild_db[3])
                     member = curr_guild.get_member(message.author.id)
                     await member.add_roles(role)
-                await message.channel.send("You have been successfully verified on " + client.get_guild(i[1]).name + ".")
+                await message.channel.send("You have been successfully verified on " + client.get_guild(i[1]).name)
         else:
-            await message.channel.send("Incorrect code.")
+            await message.channel.send("Incorrect code")
     elif message.guild == None:
-        await message.channel.send("Invalid email.")
+        await message.channel.send("Invalid email")
     await client.process_commands(message)
 
 # Get guild details
@@ -385,7 +396,7 @@ async def enableonjoin(ctx):
         if check_on_join == None:
             new_guild(ctx.guild.id)
         enable_onjoin(ctx.guild.id)
-        await ctx.send("```Verify when a user joins? True```")
+        await ctx.send("```Verify when a user joins? - True```")
 
 # Disable user verification on join
 async def disableonjoin(ctx):
@@ -394,7 +405,7 @@ async def disableonjoin(ctx):
         if check_on_join == None:
             new_guild(ctx.guild.id)
         disable_onjoin(ctx.guild.id)
-        await ctx.send("```Verify when a user joins? False```")
+        await ctx.send("```Verify when a user joins? - False```")
 
 # The Email Verification Help message
 @client.command()
@@ -405,22 +416,24 @@ async def vstatus(ctx):
             new_guild(ctx.guild.id)
         check_on_join = get_guild(ctx.guild.id)
         on_join = bool(check_on_join[2])
-        await ctx.send("```" +
-            "Ping: " + "{0}ms".format(round(client.latency * 1000)) + "\n" +
+
+        embed = discord.Embed(title="Email Verification Functionality Status", color=0x00ff00, description="Ping: " + "{0}ms".format(round(client.latency * 1000)) + "\n" +
             "User commands: " + "\n" +
-            "   =verify -> Sends a DM to the user to verify their email" + "\n" +
-            "   =vstatus -> This help message" + "\n\n" +
+            "   1. `=verify` : Sends a DM to the user to verify their email" + "\n" +
+            "   2. `=vstatus` : This Status Embed" + "\n\n" +
             "Admin commands: " + "\n" +
             " - A domain must be added before users can be verified." + "\n" +
-            " - Use =rolechange instead of server settings to change the name of the verified role." + "\n" +
-            "   =enableonjoin -> Enables verifying users on join" + "\n" +
-            "   =disableonjoin -> Disables verifying users on join" + "\n" +
-            "   =domainadd domain -> Adds an email domain" + "\n" +
-            "   =domainremove domain -> Removes an email domain" + "\n" +
-            "   =rolechange role -> Changes the name of the verified role" + "\n\n" +
-            "Domains: " + check_on_join[1] + "\n" + 
-            "Verify when a user joins? (default=False): " + str(on_join) + "\n" + 
-            "Verified role (default=IITK_Verified): " + check_on_join[3] + "```")
+            " - **Use `=rolechange` instead of server settings to change the name of the verified role.**" + "\n\n" +
+            "   1. `=enableonjoin` : Enables verifying users on join" + "\n" +
+            "   2. `=disableonjoin` : Disables verifying users on join" + "\n" +
+            "   3. `=domainadd domain` : Adds an email domain" + "\n" +
+            "   4. `=domainremove domain` : Removes an email domain" + "\n" +
+            "   5. `=rolechange role` : Changes the name of the verified role" + "\n\n" +
+            "**Domains:** " + check_on_join[1] + "\n\n" + 
+            "Verify when a user joins? (default = **False**): " + "**" + str(on_join) + "** (Current state)\n" + 
+            "Verified role (default = **IITK_Verified**): " + "**" + check_on_join[3] + "** (Current State)")
+        await ctx.send(embed=embed)
+
 
 # Check latency
 @client.command()
@@ -441,13 +454,6 @@ async def verify(ctx):
             await ctx.author.send(verify_msg(ctx.guild, check_on_join[1]))
         elif user_prev_verify[4] == 0:
             await ctx.author.send(verify_msg(ctx.guild, check_on_join[1]))
-
-
-
-
-
-
-    
 
 
 
