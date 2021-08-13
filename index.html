@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="The Discord Bot made for IITK">
         <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
         <!-- Include Font Awesome Stylesheet in Header -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -30,9 +31,9 @@
                 &nbsp;&nbsp;
                 <img style="align-content: center;z-index: -100;" src="resources/iitk_white.png" oncontextmenu="return false;"/>
             </p>
-            <br><br><br>
-            <br>
-            <h2 style="text-align:center">The bot which will fetch <code><em style="color: rgb(89, 240, 29);">dassas</em></code> for the Junta 🚀</h2>
+            <br><br>
+            <h2 style="text-align:center">The bot for IITK 🚀</h2>
+            <h2 style="text-align: center"><code style="color: rgb(89, 240, 29);"><-- insert a catchy line here --></code></h2>
             <h2 style="text-align:center">Welcome!</h2>
             <br><br>
         </header>
@@ -59,25 +60,73 @@
     
     <br><br>
     <p style="text-align:center">
-    <h1 style="text-align: center;" id="commands">Commands</h1>
+    <h1 style="text-align: center; color: rgb(218, 154, 37);" id="commands">Commands</h1>
         <p style="text-align: center;">
-            1. <code>=help</code> : Displays Help Message
+        <b style="text-align: center; color:darksalmon;">Beginning with some Utility Commands</b>
+        </p>
+        <p style="text-align:justify;">
+            1. <code style="color:#7289d9;"><b>=help</b></code> : Displays Help Message; <code>=help command_name</code> : Gives a brief info of a command
             <br>
-            Some basic test text... 
+            2. <code style="color:#7289d9;"><b>=iitk</b></code> : Gives important official websites related to IITK
+            <br>
+            3. <code style="color:#7289d9;"><b>=snt</b></code> : Gives Server links for all SnT Clubs, with few other details
+            <br>
+            4. <code style="color:#7289d9;"><b>=mnc</b></code> : Gives links related to MnC Clubs
+            <br>
+            5. <code style="color:#7289d9;"><b>=acads</b></code> : Gives important links related to Academic things, like Grade Calculator Website, Course Resorces Links etc
+            <br>
+            <br>
+        </p>
+        <p style="text-align: center;">
+            <b style="text-align: center; color:darksalmon">The IITK Email Verification System</b>
+            <br>
+            <br>
+            This enables you to verify whether the person joining your server is from IITK or not (the email domain can even be changed to any domain).
+            <br>
+            <br>
+            Use <code style="color:#7289d9;"><b>=vstatus</b></code> to get a list of things you can do
+            <br>
+            <br>
+            Use <code style="color:#7289d9;"><b>=verify</b></code> so that the Bot will DM the corresponding user who used the command, where he/she has to message the required domain's email and send the verification code received on it
+            <br>
+            <br>
+            <br>
+            <b style="color: darksalmon;">Beginning with the commands that require Admin permissions</b>
+            <br>
+            <p style="text-align:left;">
+            1. <code style="color:#7289d9;"><b>=domainadd domain</b></code> : Add a new domain which you want users to verify themselves with. Eg: <code style="color: #7289d9;">=domainadd iitk.ac.in</code> to make users verify themselves with IITK email
+            <br>
+            2. <code style="color:#7289d9;"><b>=enableonjoin</b></code> : Enables DMing the new users joining the server to verify their email. <b>[By Default it is False]</b>
+            <br>
+            3. <code style="color:#7289d9;"><b>=disableonjoin</b></code> : Disables the verification of new users joining the server
+            <br>
+            4. <code style="color:#7289d9;"><b>=domainremove domain</b></code> : Removes a domain from the list of domains
+            <br>
+            5. <code style="color:#7289d9;"><b>=rolechange new_role_name</b></code> : Change default role which the bot creates for verified users. <b>[Default: IITK_Verified]</b>
+            </p>
         </p>
     </p>
 
     <p style="text-align:center">
         <h1 style="text-align: center;" id="contri">Contribute</h1>
         <p style="text-align: center;">
-            Some basic test text... 
+            Have some good ideas to make this bot better?
+            <br>
+            Want to fix/report some issues associated with it?
+            <br>
+            Here you go:
+            <br>
+            <br>
+            <b><a href="https://github.com/QuantuMAtharva/IITK-Bot" target="_blank" style="color:limegreen;">The Repo</a></b>
         </p>
     </p>
 
     <p style="text-align:center">
-        <h1 style="text-align: center;" id="contact">Contact</h1>
+        <h1 style="text-align: center; color: cyan;" id="contact">Contact</h1>
         <p style="text-align: center;">
-            Some basic test text... 
+            <iframe src="https://discord.com/widget?id=873240891953926175&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+            <br>
+            Do join in to suggest some good features which you think should be added to the bot or if want to report any issue/bug
         </p>
     </p>
 
@@ -86,7 +135,7 @@
     <!-- FOOTER -->
 
     <p style="text-align:center">
-        Crafted with ❤️ by <a href="https://github.com/QuantuMAtharva" target="_blank" style="color:white;text-decoration: none"><u>QauntumAtharva</u></a>
+        Crafted with ❤️ by <a href="https://github.com/QuantuMAtharva" target="_blank" style="color:white;text-decoration: none"><u>QauntuMAtharva</u></a>
     </p>
     <div style="text-align:center;">
         <a href="https://discord.gg/gYVsrzCGgU" target="_blank" style="text-decoration: none; color: white;font-size: 3em;" class="fab fa-discord"></a>
