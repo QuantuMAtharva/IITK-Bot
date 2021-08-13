@@ -105,6 +105,10 @@ async def invite(ctx):
     await ctx.author.send(embed=invite_link)
 
 @client.command()
+async def bt(ctx):
+    f = open("bt.txt", "r")
+
+@client.command()
 @commands.has_permissions(manage_messages=True)
 async def clear(ctx, num=2):
     await ctx.channel.purge(limit = num+1)
