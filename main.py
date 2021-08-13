@@ -106,10 +106,10 @@ async def invite(ctx):
 
 @client.command()
 async def bt(ctx):
-    f = open("bt.txt", "r")
+    f = open("images.txt", "r")
     link = f.readlines()
     f.close()
-    num = random.randint(1,11)
+    num = random.randint(0,10)
     bt = discord.Embed(title="You asked for it!" , color=0x00ff00)
     bt.set_image(url="{}".format(link[num]))
     bt.set_footer(text="Credits: Photography Club, IITK", icon_url="https://media.discordapp.net/attachments/875806171125133343/875813077839384576/19756849_2345530779006349_3968530115160506135_n.png?width=468&height=468")
