@@ -44,12 +44,12 @@ async def status_task():
 @client.group(invoke_without_command=True)
 async def help(ctx):
     help=discord.Embed(title="IITK Bot Help", color=0x00ff00, description="My prefix is `=`, and commands are to be run as `=<command name>`. Here goes a list of my commands. Use `=help <command name>` to know more about a specific command")
-    help.set_author(name="IITK Bot", url="https://github.com/QuantuMAtharva/IITK-Bot", icon_url="https://media.discordapp.net/attachments/864451366327549963/865133614776451072/9k.png")
+    help.set_author(name="IITK Bot", url="https://quantumatharva.github.io/IITK-Bot", icon_url="https://media.discordapp.net/attachments/864451366327549963/865133614776451072/9k.png")
     help.set_footer(text="Powered by mooKIT", icon_url="https://cdn.discordapp.com/attachments/864451366327549963/865132951251451914/2Q.png")
     help.set_thumbnail(url="https://cdn.discordapp.com/attachments/864451366327549963/865132277620539402/iitk_logo.jpg")
     help.add_field(inline=False, name="Utility Commands", value="1. `iitk` : Gives important official websites related to IITK\n2. `snt` : Gives Server links for all SnT Clubs, with few other details\n3. `mnc` : Gives links related to MnC Clubs\n4. `acads` : Gives important links related to Academic things, like Grade Calculator Website, Course Resorces Links etc.")
     help.add_field(inline=False, name="Enabling IITK Email Verfication for the server", value="Use `=vstatus` to get started")
-    help.add_field(inline=False, name="Extra Commands", value="1. `=clear <number>` : To clear a certain number of messages in a channel **[NOTE: Requires user to have Manage Messages Permission]**\n2. `=invite` : Get invite link for the Bot in your DM")
+    help.add_field(inline=False, name="Extra Commands", value="1. `=clear <number>` : To clear a certain number of messages in a channel **[NOTE: Requires user to have Manage Messages Permission]**\n2. `=invite` : Get invite link for the Bot in your DM\n3. `=bt` : Use in case you haven't taken BT for a while")
     await ctx.send(embed = help)
 
 # Subcommands under the main help command
@@ -77,6 +77,7 @@ async def acads(ctx):
 async def clear(ctx):
     clear= discord.Embed(title="`=clear <number>` Command", color=0x00ff00, description="Clears a certain number of messages in a channel.\nUsage: `=clear 2` clears 2 latest messages\n**[NOTE: Requires user to have Manage Messages Permission]**")
     await ctx.send(embed=clear)
+
 
 # Other Custom Commands
 @client.command()
