@@ -85,15 +85,27 @@ async def iitk(ctx):
     iitk_links=discord.Embed(title="Links related to IITK", color=0x00ff00, description="1. [IITK Website](https://www.iitk.ac.in)\n2. [IITK Alumni Association](https://iitkalumni.org/)\n3. [SIIC](https://siicincubator.com/)")
     await ctx.send(embed=iitk_links)
 
-@client.command()
+# New command group in SnT Council
+
+@client.group(invoke_without_command=True)
+# @client.command()
 async def snt(ctx):
     snt_links=discord.Embed(title="Links related to SnT", color=0x00ff00, description="1. [SnT Website](https://www.sntiitk.in)\n2. [SnT Discord Server](https://discord.gg/ChYB82A49Y)")
     await ctx.send(embed=snt_links)
 
-@client.command()
+@snt.command()
+async def clubs(ctx):
+    clubs=discord.Embed(title="SnT Clubs", color=0x00ff00, description="Server links for clubs + imp links per club + breif intro of teams")
+
+# New command group in MnC Council
+
+@client.group(invoke_without_command=True)
+# @client.command()
 async def mnc(ctx):
     mnc_links=discord.Embed(title="Links related to MnC", color=0x00ff00, description="1. [MnC Website](https://students.iitk.ac.in/mnc/)")
     await ctx.send(embed=mnc_links)
+
+@mnc.command()
 
 @client.command()
 async def acads(ctx):
